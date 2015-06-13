@@ -9,4 +9,4 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
-console.log("App listening on port" + port);
+console.log("App listening on port " + port);
