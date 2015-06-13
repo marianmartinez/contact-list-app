@@ -1,11 +1,12 @@
+// set up ======================================================================
 var express = require('express');
 var app = express();
+var port = process.env.PORT || 3000;  //whatever is in the environment variable PORT, or 3000
 
-// app.get('/', function(req, res){
-//   res.send("Hello world from server.js");
-// });
+//configuration ================================================================
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
-app.listen(3000);
-console.log("Server running on port 3000");
+// listen (start app with node server.js) ======================================
+app.listen(port);
+console.log("App listening on port" + port);
