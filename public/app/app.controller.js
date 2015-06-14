@@ -1,6 +1,9 @@
-var contactListApp = angular.module('contactListApp', ['ngMaterial']);
+angular
+    .module('app')
+    .controller('ContactListController', ContactListController);
 
-contactListApp.controller('contactListCtrl', function($scope){
+
+function ContactListController($scope){
 
   $scope.contacts = [
     {'name': 'Pepe', 'email': 'pepe@pepe.com', 'phone': '666831799'},
@@ -8,4 +11,4 @@ contactListApp.controller('contactListCtrl', function($scope){
     {'name': 'Ana', 'email': 'ana@ana.com', 'phone': '680555555'}
   ];
 
-});
+}
