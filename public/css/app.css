@@ -1,0 +1,37 @@
+html, body {
+  height:100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Add contact area */
+
+.md-whiteframe-z1 {
+  background-color: #ffffff;
+}
+#add-contact-container{
+  background-color: rgb(244, 241, 241);
+  max-height: 75px;
+}
+
+/* Sidenav area */
+
+md-list .md-button {
+  color: inherit;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+}
+md-list .md-button.selected {
+  color: #03a9f4;
+}
+
+md-sidenav  md-list {
+  padding: 0px 0px 8px 0px;
+}
+
+/* Content area */
+
+#content {
+  background-color: rgb(244, 241, 241);
+}
