@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="contactListApp">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <title>Contact list app</title>
   </head>
-  <body>
-    <h1>Contact list App</h1>
-    <input ng-model="test">
-    {{test}}
-    <script src="./bower_components/angular/angular.js"></script>
+  <body ng-controller="contactListCtrl">
+
+    <md-toolbar>
+      <h1>Contact list App</h1>
+    </md-toolbar>
+
+    <md-content layout-padding>
+
+      <md-input-container>
+        <label>Test</label>
+          <input type="text" ng-model="test" required md-maxlength="10">
+      </md-input-container>
+
+      {{test}}
+
+   </md-content>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+    <script src="js/controllers.js"></script>
   </body>
 </html>
