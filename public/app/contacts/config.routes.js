@@ -27,7 +27,7 @@
         /***********************************************************************
         Resolve any asynchronous controller dependencies
         before* the controller is instantiated. In this case, since contacts
-        returns a promise, the controller will wait until contacts.all() is
+        returns a promise, the controller will wait until getContacts() is
         resolved before instantiation. Non-promise return values are considered
         to be resolved immediately.
         ***********************************************************************/
