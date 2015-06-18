@@ -11,7 +11,7 @@
 
     function dataservice($http, utils) {
 
-      var path = '/assets/data/contacts.json';
+      var path = '/contacts';
 
         var service = {
             getContacts: getContacts,
