@@ -2,6 +2,13 @@
   "name": "contact-list-app",
   "version": "1.0.0",
   "description": "A simple MEAN contact list",
+  "keywords": [
+       "MEAN",
+       "nodejs",
+       "angularjs",
+       "mongodb",
+       "expressjs"
+   ],
   "dependencies": {
     "express": "^4.12.4",
     "mongojs": "^1.0.1"
@@ -13,9 +20,13 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-nodemon": "^0.4.0"
   },
+  "bugs": "https://github.com/marianmartinez/contact-list-app/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/marianmartinez/contact-list-app.git"
+  },
+  "engines": {
+    "node": "0.12.4"
   },
   "author": "Marian <marian.mtnz@gmail.com"
 }
