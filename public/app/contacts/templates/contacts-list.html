@@ -1,0 +1,17 @@
+<div layout="row">
+  <md-whiteframe flex class="md-whiteframe-z1" layout-padding>
+
+    <h2>All Contacts</h2>
+
+    <md-list>
+
+      <md-list-item ui-sref-active="active" class="md-2-line" ng-repeat="contact in vm.contacts | orderBy: 'name' | filter:query">
+        <md-button ui-sref="contacts.detail({ contactId:contact.id })">
+          {{contact.name}}
+        </md-button>
+      </md-list-item>
+
+    </md-list>
+
+  </md-whiteframe>
+</div>

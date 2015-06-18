@@ -4,13 +4,13 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="assets/stylesheets/app.css">
     <title>Contact list app</title>
   </head>
 
-  <body ng-controller="ContactListController" layout="column">
+  <body layout="column" >
 
-    <!-- Container #1 top-header-->
+    <!-- Top-header-->
     <header>
       <md-toolbar>
         <div class="md-toolbar-tools">
@@ -21,76 +21,31 @@
        </md-toolbar>
     </header>
 
-    <!-- Container #2 create-contact form -->
-    <div id="add-contact-container" flex layout="row" layout-align="center" layout-padding>
-
-      <md-whiteframe class="md-whiteframe-z1">
-        <form name="addContactForm" layout="row">
-          <md-input-container md-no-float>
-            <md-icon md-svg-src="img/icons/ic_person_black_24px.svg"></md-icon>
-            <input type="text" ng-model="contact.name" placeholder="Name" required>
-          </md-input-container>
-
-          <md-input-container md-no-float>
-            <md-icon md-svg-src="/img/icons/ic_email_black_24px.svg"></md-icon>
-            <input type="text" ng-model="contact.email" placeholder="Email" required>
-          </md-input-container>
-
-          <md-input-container md-no-float>
-            <md-icon md-svg-src="/img/icons/ic_phone_black_24px.svg"></md-icon>
-            <input type="text" ng-model="contact.phone" placeholder="Phone" required>
-          </md-input-container>
-
-          <md-button type="submit"
-                     class="md-primary"
-                     aria-label="Save Contact">Add Contact
-          </md-button>
-        </form>
-       </md-whiteframe>
-    </div>
-
-    <!-- Container #3 sidebar + content -->
+    <!-- Main view -->
     <div flex layout="row">
 
-      <!-- Container #4 sidebar -->
-      <aside>
-         <md-sidenav md-is-locked-open="true" layout-padding>
+      <md-content flex class="content">
 
-           <form name="searchContactForm">
-            <md-input-container md-no-float>
-              <input ng-model="query" placeholder="Search">
-           </md-input-container>
-          </form>
-
-          <section>
-
-            <md-list>
-              <md-list-item class="md-2-line" ng-repeat="contact in contacts | orderBy: 'name' | filter:query">
-                <md-button>
-                  {{contact.name}}
-                </md-button>
-              </md-list-item>
-            </md-list>
-
-          </section>
-
-        </md-sidenav>
-      </aside>
-
-      <!-- Container #5 content-->
-      <md-content flex id="content">
-
-        <div ng-view></div>
+        <div ui-view></div>
 
       </md-content>
 
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-material/angular-material.js"></script>
     <script src="app.module.js"></script>
-    <script src="app.controller.js"></script>
+    <script src="app.config.js"></script>
+    <script src="contacts/contacts.module.js"></script>
+    <script src="contacts/config.routes.js"></script>
+    <script src="common/utils/utils.module.js"></script>
+    <script src="common/utils/utils.service.js"></script>
+    <script src="contacts/dataservice.js"></script>
+    <script src="contacts/contacts.js"></script>
+    <script src="contacts/contact-detail.js"></script>
+
   </body>
 </html>

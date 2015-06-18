@@ -12,9 +12,19 @@ html, body {
 #add-contact-container{
   background-color: rgb(244, 241, 241);
   max-height: 75px;
+  margin-top: 15px;
+}
+.add-icon {
+  position: relative;
+  top: -5px;
+  left: 4px;
 }
 
 /* Sidenav area */
+
+.active{
+  background-color: #F4F4F4;
+}
 
 md-list .md-button {
   color: inherit;
@@ -32,6 +42,6 @@ md-sidenav  md-list {
 
 /* Content area */
 
-#content {
+.content {
   background-color: rgb(244, 241, 241);
 }

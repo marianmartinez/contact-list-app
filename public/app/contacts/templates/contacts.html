@@ -1,0 +1,69 @@
+<!-- Create contact form -->
+<div id="add-contact-container" flex layout="row" layout-align="center" layout-padding>
+
+  <md-whiteframe class="md-whiteframe-z1">
+    <form name="addContactForm" layout="row">
+      <md-input-container md-no-float>
+        <md-icon md-svg-src="assets/img/icons/ic_person_black_24px.svg"></md-icon>
+        <input type="text" ng-model="contact.name" placeholder="Name" required>
+      </md-input-container>
+
+      <md-input-container md-no-float>
+        <md-icon md-svg-src="assets/img/icons/ic_email_black_24px.svg"></md-icon>
+        <input type="text" ng-model="contact.email" placeholder="Email" required>
+      </md-input-container>
+
+      <md-input-container md-no-float>
+        <md-icon md-svg-src="assets/img/icons/ic_phone_black_24px.svg"></md-icon>
+        <input type="text" ng-model="contact.phone" placeholder="Phone" required>
+      </md-input-container>
+
+      <md-button type="submit"
+                 class="md-fab add-icon"
+                 aria-label="Save Contact">
+        <md-icon md-svg-src="assets/img/icons/plus.svg">
+      </md-button>
+
+    </form>
+   </md-whiteframe>
+</div>
+
+<div flex layout="row" layout-padding>
+
+  <aside>
+     <md-sidenav md-is-locked-open="true" layout-padding>
+
+       <form name="searchContactForm">
+        <md-input-container md-no-float>
+          <input ng-model="query" placeholder="Search">
+       </md-input-container>
+      </form>
+
+      <section>
+
+        <md-list>
+          <md-list-item ng-class="{ active: $state.includes('contacts.list') }">
+            <md-button ui-sref="contacts.list">
+              All Contacts
+            </md-button>
+          </md-list-item>
+
+          <md-list-item ui-sref-active="active" class="md-2-line" ng-repeat="contact in vm.contacts | orderBy: 'name' | filter:query">
+            <md-button ui-sref="contacts.detail({ contactId:contact.id })">
+              {{contact.name}}
+            </md-button>
+          </md-list-item>
+
+        </md-list>
+
+      </section>
+
+    </md-sidenav>
+  </aside>
+
+  <!-- unnamed main ui-view for this template -->
+  <md-content flex class="content">
+    <div ui-view></div>
+  </md-content>
+
+</div>
