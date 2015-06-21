@@ -7,11 +7,11 @@
         'ngMaterial',
         'ui.router',
 
-        /* Common services */
+        /* Common */
         'app.utils',
 
         /* Feature areas */
-        'app.contacts'  
+        'app.contacts'
 
     ]);
 

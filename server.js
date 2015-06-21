@@ -1,32 +1,45 @@
 (function () {
   "use strict";
 
-  // set up ======================================================================
+  // set up ====================================================================
   var express = require('express');
   var app = express();
-  var port = process.env.PORT || 3000;  //whatever is in the environment variable PORT, or 3000
+  var port = process.env.PORT || 3000; //whatever is in the environment variable PORT, or 3000
   var mongojs = require('mongojs');
   var db = mongojs('contactlist', ['contactlist']);
+  var bodyParser = require('body-parser');
 
-  // configuration ================================================================
+  // configuration =============================================================
   app.use(express.static(__dirname + '/public/app/'));
   app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+  app.use(bodyParser.json()); // for parsing application/json
+  app.use(function(req, res, next) { // middleware to use for all requests
+    console.log('Request Type:', req.method);
+    next();
+  });
 
-  // routes ================================================================
+  // routes ====================================================================
   app.get('/contacts', getContacts);
+  app.post('/contacts', addContact);
 
+  // get =======================================================================
   function getContacts(req, res){
-    console.log('I received a GET request');
-
     db.contactlist
       .find(function(err, docs){
-        console.log(docs);
         res.json(docs);
     });
-
   }
 
-  // listen (start app with node server.js) ======================================
+  // post ======================================================================
+  function addContact(req, res){
+    var contact = req.body;
+    db.contactlist
+      .insert(contact,function(err, doc){
+        res.json(doc);
+    });
+  }
+
+  // listen (start app with node server.js) ====================================
   app.listen(port);
   console.log('App listening on port ' + port);
 

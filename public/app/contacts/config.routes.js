@@ -32,9 +32,9 @@
         to be resolved immediately.
         ***********************************************************************/
         resolve: {
-          contacts: ['dataservice',
-            function(dataservice){
-              return dataservice.getContacts();
+          contacts: ['dataService',
+            function(dataService){
+              return dataService.getContacts();
             }]
         },
 
@@ -68,7 +68,7 @@
 
       .state('contacts.detail', {
 
-        url: '/{contactId:[0-9]{1,4}}',
+        url: '/{contactId:[0-9a-zA-Z]{1,24}}',
 
         templateUrl: 'contacts/templates/contact-detail.html',
 

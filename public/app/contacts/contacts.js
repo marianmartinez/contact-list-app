@@ -5,12 +5,19 @@
         .module('app.contacts')
         .controller('ContactsController', ContactsController);
 
-    ContactsController.$inject = [ '$state', 'contacts', 'utils'];
+    ContactsController.$inject = [ '$state', 'contacts', 'dataService'];
 
-    function ContactsController($state,   contacts,   utils){
+    function ContactsController($state, contacts, dataService){
       var vm = this; //vm stands for ViewModel
 
       vm.contacts = contacts;
+
+      vm.addContact = function() {
+        dataService.addContact(vm.contact).then(function(response) {
+          console.log(response);
+          $state.go('contacts.detail', { contactId: response._id }, {reload: true});
+        });
+      };
     }
 
 })();

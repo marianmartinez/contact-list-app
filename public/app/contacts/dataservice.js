@@ -5,51 +5,64 @@
 
     angular
         .module('app.contacts')
-        .factory('dataservice', dataservice);
+        .factory('dataService', dataService);
 
-    dataservice.$inject = ['$http','utils'];
+    dataService.$inject = ['$http','utils'];
 
-    function dataservice($http, utils) {
+    function dataService($http, utils) {
 
-      var path = '/contacts';
+      var service = {
+          getContacts: getContacts,
+          findById: findById,
+          addContact: addContact
+      };
 
-        var service = {
-            getContacts: getContacts,
-            findById: findById
-        };
+      return service;
 
-        return service;
+      /////////
 
-        /////////
+      function getContacts() {
+          return $http.get('/contacts')
+              .then(getContactsComplete)
+              .catch(getContactsFailed);
 
-        function getContacts() {
-            return $http.get(path)
-                .then(getContactsComplete)
-                .catch(getContactsFailed);
+          function getContactsComplete(response) {
+              return response.data;
+          }
 
-            function getContactsComplete(response) {
-                return response.data;
-            }
+          function getContactsFailed(error) {
+              console.log('XHR Failed for getContacts.');
+          }
+      }
 
-            function getContactsFailed(error) {
-                console.log('XHR Failed for getContacts.');
-            }
-        }
+      function findById(id) {
+          return getContacts()
+              .then(findByIdComplete)
+              .catch(findByIdFailed);
 
-        function findById(id) {
-            return getContacts()
-                .then(findByIdComplete)
-                .catch(findByIdFailed);
+          function findByIdComplete(response, id) {
+            console.log(response);
+            return utils.findById(response.data, id);
+          }
 
-            function findByIdComplete(response, id) {
-              console.log(response);
-              return utils.findById(response.data, id);
-            }
+          function findByIdFailed(error) {
+            console.log('XHR Failed for findById.');
+          }
+      }
 
-            function findByIdFailed(error) {
-                console.log('XHR Failed for findById.');
-            }
-        }
+      function addContact(contact) {
+        return $http.post('/contacts', contact)
+              .then(addContactComplete)
+              .catch(addContactFailed);
+
+          function addContactComplete(response) {
+            return response.data;
+          }
+
+          function addContactFailed(error) {
+            console.log('XHR Failed for addContact.');
+          }
+      }
     }
 
 })();

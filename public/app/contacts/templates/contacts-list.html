@@ -1,12 +1,18 @@
 <div layout="row">
   <md-whiteframe flex class="md-whiteframe-z1" layout-padding>
 
-    <h2>All Contacts</h2>
+    <h2>All Contacts ({{vm.contacts.length}})</h2>
+    
+    <form name="searchContactForm">
+     <md-input-container md-no-float>
+       <input ng-model="query" placeholder="Search">
+    </md-input-container>
+   </form>
 
     <md-list>
 
       <md-list-item ui-sref-active="active" class="md-2-line" ng-repeat="contact in vm.contacts | orderBy: 'name' | filter:query">
-        <md-button ui-sref="contacts.detail({ contactId:contact.id })">
+        <md-button ui-sref="contacts.detail({ contactId:contact._id })">
           {{contact.name}}
         </md-button>
       </md-list-item>
