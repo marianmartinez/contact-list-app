@@ -14,7 +14,6 @@
 
       vm.addContact = function() {
         dataService.addContact(vm.contact).then(function(response) {
-          console.log(response);
           $state.go('contacts.detail', { contactId: response._id }, {reload: true});
         });
       };

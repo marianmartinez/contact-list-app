@@ -3,6 +3,7 @@
     <h2>{{vm.contact.name}}</h2>
     <p>{{vm.contact.email}}<p>
     <p>{{vm.contact.phone}}<p>
+    <md-button class="md-raised" ng-click="vm.editContact(vm.contact._id)">Edit</md-button>
     <md-button class="md-raised" ng-click="vm.deleteContact(vm.contact._id)">Delete</md-button>
   </md-whiteframe>
 </div>

@@ -21,9 +21,11 @@
   // routes ====================================================================
   app.get('/contacts', getContacts);
   app.post('/contacts', addContact);
+  app.get('/contacts/:id', getContact);
+  app.put('/contacts/:id', updateContact);
   app.delete('/contacts/:id', deleteContact);
 
-  // get =======================================================================
+  // get all ===================================================================
   function getContacts(req, res){
     db.contactlist
       .find(function(err, docs){
@@ -31,13 +33,35 @@
     });
   }
 
-  // post ======================================================================
+  // create ====================================================================
   function addContact(req, res){
     var contact = req.body;
     db.contactlist
       .insert(contact,function(err, doc){
         res.json(doc);
     });
+  }
+
+  // get =======================================================================
+  function getContact(req, res){
+    var id = req.params.id;
+    db.contactlist
+      .findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
+        res.json(doc);
+    });
+  }
+
+  // update ====================================================================
+  function updateContact(req, res){
+    var id = req.params.id;
+    db.contactlist
+      .findAndModify({
+        query: {_id: mongojs.ObjectId(id)},
+        update: {$set: {name: req.body.name, email: req.body.email, phone: req.body.phone}},
+        new: true
+      }, function(err, doc){
+          res.json(doc);
+      });
   }
 
   // delete ====================================================================

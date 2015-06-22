@@ -1,5 +1,3 @@
-// dataservice factory
-
 (function() {
     'use strict';
 
@@ -13,9 +11,11 @@
 
       var service = {
           getContacts: getContacts,
-          findById: findById,
           addContact: addContact,
-          deleteContact: deleteContact
+          getContact: getContact,
+          updateContact: updateContact,
+          deleteContact: deleteContact,
+          findById: findById
       };
 
       return service;
@@ -36,21 +36,6 @@
           }
       }
 
-      function findById(id) {
-          return getContacts()
-              .then(findByIdComplete)
-              .catch(findByIdFailed);
-
-          function findByIdComplete(response, id) {
-            console.log(response);
-            return utils.findById(response.data, id);
-          }
-
-          function findByIdFailed(error) {
-            console.log('XHR Failed for findById.');
-          }
-      }
-
       function addContact(contact) {
         return $http.post('/contacts', contact)
               .then(addContactComplete)
@@ -62,6 +47,34 @@
 
           function addContactFailed(error) {
             console.log('XHR Failed for addContact.');
+          }
+      }
+
+      function getContact(id) {
+        return $http.get('/contacts/' + id)
+              .then(getContactComplete)
+              .catch(getContactFailed);
+
+          function getContactComplete(response) {
+            return response.data;
+          }
+
+          function getContactFailed(error) {
+            console.log('XHR Failed for getContact.');
+          }
+      }
+
+      function updateContact(id, contact) {
+        return $http.put('/contacts/' + id, contact)
+              .then(updateContactComplete)
+              .catch(updateContactFailed);
+
+          function updateContactComplete(response) {
+            return response.data;
+          }
+
+          function updateContactFailed(error) {
+            console.log('XHR Failed for updateContact.');
           }
       }
 
@@ -78,6 +91,22 @@
             console.log('XHR Failed for deleteContact.');
           }
       }
+
+      function findById(id) {
+          return getContacts()
+              .then(findByIdComplete)
+              .catch(findByIdFailed);
+
+          function findByIdComplete(response, id) {
+            console.log(response);
+            return utils.findById(response.data, id);
+          }
+
+          function findByIdFailed(error) {
+            console.log('XHR Failed for findById.');
+          }
+      }
+
     }
 
 })();
