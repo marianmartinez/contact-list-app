@@ -21,6 +21,7 @@
   // routes ====================================================================
   app.get('/contacts', getContacts);
   app.post('/contacts', addContact);
+  app.delete('/contacts/:id', deleteContact);
 
   // get =======================================================================
   function getContacts(req, res){
@@ -35,6 +36,15 @@
     var contact = req.body;
     db.contactlist
       .insert(contact,function(err, doc){
+        res.json(doc);
+    });
+  }
+
+  // delete ====================================================================
+  function deleteContact(req, res){
+    var id = req.params.id;
+    db.contactlist
+      .remove({_id: mongojs.ObjectId(id)}, function(err, doc){
         res.json(doc);
     });
   }

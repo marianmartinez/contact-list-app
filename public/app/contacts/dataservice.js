@@ -14,7 +14,8 @@
       var service = {
           getContacts: getContacts,
           findById: findById,
-          addContact: addContact
+          addContact: addContact,
+          deleteContact: deleteContact
       };
 
       return service;
@@ -61,6 +62,20 @@
 
           function addContactFailed(error) {
             console.log('XHR Failed for addContact.');
+          }
+      }
+
+      function deleteContact(id) {
+        return $http.delete('/contacts/' + id)
+              .then(deleteContactComplete)
+              .catch(deleteContactFailed);
+
+          function deleteContactComplete(response) {
+            return response.data;
+          }
+
+          function deleteContactFailed(error) {
+            console.log('XHR Failed for deleteContact.');
           }
       }
     }
