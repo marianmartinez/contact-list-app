@@ -7,7 +7,7 @@
        .config(configure);
 
      run.$inject = [ '$rootScope', '$state', '$stateParams'];
-     configure.$inject = ['$urlRouterProvider'];
+     configure.$inject = ['$urlRouterProvider', '$locationProvider'];
 
      function run($rootScope, $state, $stateParams) {
       // Add references to $state and $stateParams to the $rootScope
@@ -16,7 +16,8 @@
        $rootScope.$stateParams = $stateParams;
      }
 
-     function configure($urlRouterProvider) {
+     function configure($urlRouterProvider, $locationProvider) {
+       $locationProvider.html5Mode(true);
        $urlRouterProvider.otherwise( '/contacts' );
      }
 
